@@ -1,9 +1,9 @@
 import React from 'react';
 
-const NoRouteMatch = (props) => {
+const NoRoute = (props) => {
    return (
       <div>I'm Lost</div>
    )
 }
 
-export default NoRouteMatch;
+export default NoRoute;

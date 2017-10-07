@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import AllCategoryView from './AllCategoryView';
-import CategoryView from './CategoryView';
+import * as ReadableAPI from '../util/ReadableAPI';
+import PageContainer from './PageContainer';
+import AllPosts from './AllPosts';
+import Category from './Category';
 import PostDetail from './PostDetail';
 import PostEdit from './PostEdit';
-import NoRouteMatch from './NoRouteMatch';
+import NoRoute from './NoRoute';
 import '../App.css';
+
 
 class App extends Component {
    render() {
       return (
          <div className="app">
-            <Switch>
-               <Route exact path="/" component={AllCategoryView} />
-               <Route path="/category" component={CategoryView} />
-               <Route path="/post" component={PostDetail} />
-               <Route path="/post-edit" component={PostEdit} />
-               <Route component={NoRouteMatch} />
-            </Switch>
+            <PageContainer>
+               <Switch>
+                  <Route exact path="/" component={AllPosts} />
+                  <Route path="/category/:id" component={Category} />
+                  <Route path="/post" component={PostDetail} />
+                  <Route path="/post-edit" component={PostEdit} />
+                  <Route component={NoRoute} />
+               </Switch>
+            </PageContainer>
          </div>
       );
    }
