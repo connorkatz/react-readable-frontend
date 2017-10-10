@@ -21,7 +21,6 @@ class SelectList extends Component {
       return (
          <div className={`select-list ${active ? "active" : ""}`}>
             <label onClick={this.toggleActive}>{name}</label>
-            <h5></h5>
             <ul>
                <li><Link to='/'>All</Link></li>
                <li></li>
