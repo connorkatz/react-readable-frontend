@@ -6,4 +6,12 @@
 
 body {
    background: #E5E5E5;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 400;
+   color: #474747;
+   font-size: 12px;
+}
+
+ul, ol {
+   list-style-type: none;
 }

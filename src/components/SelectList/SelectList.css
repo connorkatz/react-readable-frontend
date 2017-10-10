@@ -1,0 +1,28 @@
+.select-list {
+   flex-grow: 1;
+   position: relative;
+   background: #E5E5E5;
+   margin-left: 1px;
+}
+
+.select-list.active ul {
+   display: block;
+}
+
+.select-list:first-of-type {
+   margin-left: 0;
+}
+
+label {
+   display: block;
+   padding: 10px 15px;
+   font-weight: 700;
+}
+
+ul {
+   display: none;
+   position: absolute;
+   background: red;
+   width: 100%;
+   padding: 15px;
+}
