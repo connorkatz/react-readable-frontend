@@ -1,5 +1,6 @@
 import React from 'react';
-import SelectList from './SelectList';
+import SelectList from '../SelectList/SelectList';
+import './NavBar.css';
 
 const NavBar = (props) => {
    return (
