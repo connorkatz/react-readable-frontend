@@ -20,7 +20,7 @@ class SelectList extends Component {
 
       return (
          <div className={`select-list ${active ? "active" : ""}`}>
-            <label onClick={this.toggleActive}>{name}</label>
+            <span onClick={this.toggleActive}>{name}</span>
             <ul>
                <li><Link to='/'>All</Link></li>
                <li></li>

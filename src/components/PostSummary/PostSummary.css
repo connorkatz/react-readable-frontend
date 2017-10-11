@@ -1,0 +1,40 @@
+.post-link {
+   color: #474747;
+   text-decoration: none;
+}
+
+.post-link h2 {
+   color: #009bff;
+}
+
+.post-link:hover h2 {
+   text-decoration: underline;
+}
+
+.post-summary {
+   display: flex;
+   margin-bottom: 10px;
+}
+
+.post-summary .layout-block-1 {
+   display: flex;
+   align-items: center;
+   flex-basis: 60px;
+   background: #e9e9e9;
+   border-right: 1px solid #dbdbdb;
+}
+
+.post-summary .votes {
+   flex: 1;
+   text-align: center;
+   font-weight: 300;
+}
+
+.post-summary .votes.positive::before {
+   content: '+';
+}
+
+.post-summary .layout-block-2 {
+   flex: 1;
+   padding: 0 20px;
+}
