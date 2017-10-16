@@ -1,0 +1,25 @@
+.site-header {
+  display: flex;
+  background: #384046;
+  margin-bottom: 20px; }
+
+.readable-logo {
+  padding: 10px 25px;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.2); }
+  .readable-logo a {
+    color: #ffffff;
+    text-decoration: none; }
+  .readable-logo h1 {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center; }
+  .readable-logo span {
+    font-weight: 300;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5); }
+
+.nav-bar {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end; }

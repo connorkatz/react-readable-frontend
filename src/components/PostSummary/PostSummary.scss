@@ -1,0 +1,42 @@
+.post-link {
+   display: block;
+   color: #474747;
+   text-decoration: none;
+   
+   h2 {
+      color: #009bff;
+      font-weight: 600;
+   }
+
+   &:hover {
+      background: #EDF4FA;
+   }
+} // end post-link
+
+
+.post-summary {
+   display: flex;
+   padding: 15px;
+   border-bottom: 1px solid #dbdbdb;
+
+   .layout-block-1 {
+      flex: 1;
+      h2 {
+         font-size: 18px;
+      }
+      address {
+         font-style: normal;
+      }
+      time {
+         font-style: italic;
+         color: #7e7e7e
+      }
+   }
+
+   .layout-block-2 {
+      display: flex;
+      justify-content: flex-end;
+      flex-basis: 200px;
+      align-items: center;
+   } // end layout block 2
+} // end post summary

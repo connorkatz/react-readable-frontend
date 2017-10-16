@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import FaAngleDown from 'react-icons/lib/fa/angle-down'
 import './SelectList.css';
 
 class SelectList extends Component {
@@ -19,13 +20,22 @@ class SelectList extends Component {
       const { name } = this.props;
 
       return (
-         <div className={`select-list ${active ? "active" : ""}`}>
-            <span onClick={this.toggleActive}>{name}</span>
+         <div 
+            className={`select-list ${active ? "active" : ""}`}
+            onClick={this.toggleActive}
+         >
+            <div class="select-list-label">
+               <strong>{name}</strong>
+               <div className="select-list-state">
+                  <span>All Posts</span>
+                  <i><FaAngleDown /></i>
+               </div>
+            </div>          
             <ul>
-               <li><Link to='/'>All</Link></li>
-               <li></li>
-               <li>Cat 2</li>
-               <li>Cat 3</li>
+               <li><Link to='/'>All Posts</Link></li>
+               <li><Link to='/'>Cat 1</Link></li>
+               <li><Link to='/'>Cat 2</Link></li>
+               <li><Link to='/'>Cat 3</Link></li>
             </ul>
          </div>
       )

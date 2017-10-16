@@ -1,12 +1,14 @@
 import React from 'react';
-import NavBar from '../NavBar/NavBar';
+import Header from '../Header/Header';
 import './PageContainer.css';
 
 const PageContainer = (props) => {
    return (
       <div className="page-container">
-         <NavBar/>
-         {props.children}
+         <Header/>
+         <section className="page-content">
+            {props.children}
+         </section>
       </div>
    )
 }

@@ -1,0 +1,50 @@
+// Resets
+// ------------------
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   background: #ffffff;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 400;
+   color: #474747;
+   font-size: 12px;
+}
+
+a {
+   text-decoration: none;
+   color: #009bff;
+}
+
+ul, ol {
+   list-style-type: none;
+}
+
+
+// Common Styles Shared Across Components
+// ---------------------------------------
+
+.icon-counter {
+   display: flex;
+   flex-basis: 50px;
+   justify-content: flex-end;
+   align-items: center;
+   color: #656565;
+
+   i {
+      flex-basis: 15px;
+      margin-right: 5px;
+      svg {
+         width: 100%;
+         height: auto;
+      }
+   }
+
+   span {
+      font-size: 14px;
+      font-weight: 300;
+   }
+}
