@@ -1,18 +1,22 @@
 .post-detail header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #b3b3b3;
+  padding: 0 0 5px 0;
   margin-bottom: 15px; }
   .post-detail header h1 {
+    flex: 1;
     font-size: 32px;
     color: #384046;
-    font-weight: 700;
-    border-bottom: 2px solid #b3b3b3;
-    padding: 0 0 5px 0;
-    margin-bottom: 15px; }
-  .post-detail header address {
-    font-size: 16px;
-    font-style: normal;
-    margin-bottom: 5px; }
-  .post-detail header time {
-    font-style: italic; }
+    font-weight: 700; }
+
+.post-details-block address {
+  font-size: 16px;
+  font-style: normal;
+  margin-bottom: 5px; }
+
+.post-details-block time {
+  font-style: italic; }
 
 .post-content {
   font-size: 16px;

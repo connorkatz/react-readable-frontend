@@ -7,7 +7,6 @@ import PostDetail from '../PostDetail/PostDetail';
 import PostEdit from '../PostEdit/PostEdit';
 import './App.css';
 
-
 const App = (props) => {
    return (
       <div className="app">

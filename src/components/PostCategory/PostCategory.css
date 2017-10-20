@@ -1,7 +1,13 @@
-.post-list h1 {
-  font-size: 22px;
-  color: #384046;
-  font-weight: 700;
-  text-transform: uppercase;
+.post-list header {
+  display: flex;
+  align-items: center;
   border-bottom: 2px solid #b3b3b3;
   padding: 0 0 5px 0; }
+  .post-list header h1 {
+    flex: 1;
+    font-size: 22px;
+    color: #384046;
+    font-weight: 700;
+    text-transform: uppercase; }
+  .post-list header a {
+    padding: 5px 0; }

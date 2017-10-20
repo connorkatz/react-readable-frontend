@@ -17,6 +17,15 @@ a {
 ul, ol {
   list-style-type: none; }
 
+button {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  cursor: pointer; }
+
+textarea {
+  outline: none;
+  font-size: 14px; }
+
 .icon-counter {
   display: flex;
   flex-basis: 50px;
@@ -32,3 +41,13 @@ ul, ol {
   .icon-counter span {
     font-size: 14px;
     font-weight: 300; }
+
+.secondary-link {
+  color: dimgray;
+  border: none;
+  background: none;
+  font-size: 12px; }
+  .secondary-link:hover {
+    color: #009bff; }
+  .secondary-link.last {
+    margin-left: 15px; }

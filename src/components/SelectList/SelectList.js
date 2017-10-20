@@ -24,7 +24,7 @@ class SelectList extends Component {
             className={`select-list ${active ? "active" : ""}`}
             onClick={this.toggleActive}
          >
-            <div class="select-list-label">
+            <div className="select-list-label">
                <strong>{name}</strong>
                <div className="select-list-state">
                   <span>All Posts</span>

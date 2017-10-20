@@ -1,26 +1,31 @@
 .post-detail {
    header {
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid #b3b3b3;
+      padding: 0 0 5px 0;
       margin-bottom: 15px;
-
+      
       h1 {
+         flex: 1;
          font-size: 32px;
          color: #384046;
          font-weight: 700;
-         border-bottom: 2px solid #b3b3b3;
-         padding: 0 0 5px 0;
-         margin-bottom: 15px;
-      }
-      address {
-         font-size: 16px;
-         font-style: normal;
-         margin-bottom: 5px;
-      }
-
-      time {
-         font-style: italic;
       }
    } // end header
 } // end post-detail
+
+.post-details-block {
+   address {
+      font-size: 16px;
+      font-style: normal;
+      margin-bottom: 5px;
+   }
+
+   time {
+      font-style: italic;
+   }
+} // end post det
 
 .post-content {
    font-size: 16px;

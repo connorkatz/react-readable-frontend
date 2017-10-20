@@ -1,3 +1,4 @@
+// ------------------
 // Resets
 // ------------------
 * {
@@ -23,7 +24,18 @@ ul, ol {
    list-style-type: none;
 }
 
+button {
+   font-family: 'Open Sans', sans-serif;
+   font-size: 12px;
+   cursor: pointer;
+}
 
+textarea {
+   outline: none;
+   font-size: 14px;
+}
+
+// ---------------------------------------
 // Common Styles Shared Across Components
 // ---------------------------------------
 
@@ -46,5 +58,18 @@ ul, ol {
    span {
       font-size: 14px;
       font-weight: 300;
+   }
+}
+
+.secondary-link {
+   color: rgb(105, 105, 105);
+   border: none;
+   background: none;
+   font-size: 12px;
+   &:hover {
+      color: #009bff;
+   }
+   &.last {
+      margin-left: 15px;
    }
 }
