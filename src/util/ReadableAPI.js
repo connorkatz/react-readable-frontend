@@ -1,7 +1,9 @@
 const apiServer = 'http://localhost:3001';
 const headers = {
+   'Authorization': 'connor-katz',
    'Accept': 'application/json',
-   'Authorization': 1234567
+   'Content-Type': 'application/json'
+   
 }
 
 // Get all categories
@@ -31,4 +33,4 @@ export const createPost = (post) =>
       headers,
       body: JSON.stringify(post)
    }
-   ).then(res => res.json)
+   ).then(res => res.json())
