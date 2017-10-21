@@ -5,23 +5,8 @@ import PageContainer from '../PageContainer/PageContainer';
 import PostCategory from '../PostCategory/PostCategory';
 import PostDetail from '../PostDetail/PostDetail';
 import PostEdit from '../PostEdit/PostEdit';
+import { connect } from 'react-redux';
 import './App.css';
-
-ReadableAPI.getAllCategories().then(data => { console.log(data) });
-
-ReadableAPI.createPost(
-   {
-      id: 1235,
-      timestamp: Date.now(),
-      title: 'Monkey Man',
-      body: 'I Like Monkeys',
-      author: 'Kink Kong',
-      category: 'react'
-   }
-)
-.then(res => { console.log(res) })
-ReadableAPI.getPosts().then(data => { console.log(data) })
-
 
 const App = (props) => {
    return (
@@ -39,4 +24,10 @@ const App = (props) => {
    );
 }
 
-export default App;
+const mapStatetoProps = () => (
+   {
+      name: 'Willy Wonka'
+   }
+)
+
+export default connect(mapStatetoProps)(App);
