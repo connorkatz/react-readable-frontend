@@ -21,7 +21,7 @@ class PostSummary extends Component {
                   <time>{date}</time>
                </div>
                <div className="layout-block-2">
-                  <VoteScore votes="10" />
+                  <VoteScore votes={votes} />
                   <CommentScore comments="20" />
                </div>
             </article>

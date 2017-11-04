@@ -1,9 +1,11 @@
-import { ADD_POST, UPDATE_POST, DELETE_POST } from '../actions/postsActions';
+import { GET_ALL_POSTS, ADD_POST, UPDATE_POST, DELETE_POST } from '../actions/postsActions';
 
-const postsReducer = (state = {}, action) => {
-   const { id, timestamp, title, author, body, category } = action;
+const postsReducer = (state = [], action) => {
+   const { posts, id, timestamp, title, author, body, category } = action;
 
    switch (action.type) {
+      case GET_ALL_POSTS:
+         return [...posts]
       case ADD_POST:
          return {
             ...state,

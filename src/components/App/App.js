@@ -1,33 +1,36 @@
-import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import * as ReadableAPI from '../../util/ReadableAPI';
 import PageContainer from '../PageContainer/PageContainer';
 import PostCategory from '../PostCategory/PostCategory';
 import PostDetail from '../PostDetail/PostDetail';
 import PostEdit from '../PostEdit/PostEdit';
 import { connect } from 'react-redux';
+import { getAllPosts} from '../../actions/postsActions';
 import './App.css';
 
-const App = (props) => {
-   return (
-      <div className="app">
-         <PageContainer>
-            <Switch>
-               <Route exact path="/" component={PostCategory} />
-               <Route path="/:category/id" component={PostCategory} />
-               <Route path="/posts/:id" component={PostDetail} />
-               <Route path="/post-edit" component={PostEdit} />
-               <Redirect to="/" />
-            </Switch>
-         </PageContainer>
-      </div>
-   );
+class App extends Component {
+   componentDidMount() {
+      ReadableAPI.getAllPosts().then(posts => {
+         this.props.dispatch(getAllPosts(posts))
+      });
+   }
+
+   render() {
+      return (
+         <div className="app">
+            <PageContainer>
+               <Switch>
+                  <Route exact path="/" component={PostCategory} />
+                  <Route path="/:category/posts" component={PostCategory} />
+                  <Route path="/posts/:id" component={PostDetail} />
+                  <Route path="/post-edit" component={PostEdit} />
+                  <Redirect to="/" />
+               </Switch>
+            </PageContainer>
+         </div>
+      );
+   }
 }
 
-const mapStatetoProps = () => (
-   {
-      name: 'Willy Wonka'
-   }
-)
-
-export default connect(mapStatetoProps)(App);
+export default withRouter(connect()(App));
