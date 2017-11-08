@@ -1,0 +1,35 @@
+.post-vote-block {
+   display: flex;
+   flex-basis: 100px;
+   align-items: center;
+   justify-content: flex-end;
+   margin-right: 15px;
+}
+
+.vote-arrows-block {
+   flex-basis: 20px;
+   margin-right: 5px;
+   .vote-arrow {
+      display: inline-block;
+      width: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      svg {
+         width: 100%;
+         height: auto;
+      }
+   }
+}
+
+.vote-score {
+   display: flex;
+   align-items: center;
+   i {
+      width: 20px;
+      margin-right: 5px;
+   }
+   svg {
+      width: 100%;
+      height: auto;
+   }
+}

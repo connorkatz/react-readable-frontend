@@ -1,0 +1,9 @@
+.comment-score-block {
+  display: flex;
+  align-items: center; }
+  .comment-score-block i {
+    width: 20px;
+    margin-right: 5px; }
+  .comment-score-block svg {
+    width: 100%;
+    height: auto; }

@@ -35,32 +35,13 @@ textarea {
    font-size: 14px;
 }
 
+:focus {
+   outline: none;
+}
+
 // ---------------------------------------
 // Common Styles Shared Across Components
 // ---------------------------------------
-
-.icon-counter {
-   display: flex;
-   flex-basis: 50px;
-   justify-content: flex-end;
-   align-items: center;
-   color: #656565;
-
-   i {
-      flex-basis: 15px;
-      margin-right: 5px;
-      svg {
-         width: 100%;
-         height: auto;
-      }
-   }
-
-   span {
-      font-size: 14px;
-      font-weight: 300;
-   }
-}
-
 .secondary-link {
    color: rgb(105, 105, 105);
    border: none;
@@ -73,3 +54,37 @@ textarea {
       margin-left: 15px;
    }
 }
+
+.button-link {
+   display: inline-block;
+   background: #E6E6E6;
+   font-size: 14px;
+   padding: 10px 15px;
+   color: #808080;
+   min-width: 150px;
+   text-align: center;
+   &:hover {
+      background: #009bff;
+      color: #ffffff;
+   }
+   & + & {
+      margin-left: 5px;
+   }
+   &.submit {
+      background: #009bff;
+      color: #ffffff;
+      &:disabled {
+         background: #E6E6E6;
+         color: #808080;
+      }
+   }
+}
+
+.buttons-block {
+   display: flex;
+   margin: 15px 0;
+   button {
+      padding: 10px 25px;
+      border: none;
+   } // end button
+} // end buttons-block 

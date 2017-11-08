@@ -1,0 +1,12 @@
+.comment-score-block {
+   display: flex;
+   align-items: center;
+   i {
+      width: 20px;
+      margin-right: 5px;
+   }
+   svg {
+      width: 100%;
+      height: auto;
+   }
+}

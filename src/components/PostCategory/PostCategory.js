@@ -6,26 +6,25 @@ import './PostCategory.css';
 
 class PostCategory extends Component {
    render() {
-      const {category} = this.props.match.params
+      const { category } = this.props.match.params;
+      const { posts } = this.props;
+      let postList = [];
+
+      if (category) {
+         postList = posts.filter(post => post.deleted != true && post.category === category)
+      } else {
+         postList = posts.filter(post => post.deleted != true)
+      }
+
       return (
          <section className="post-list">
             <header>
                <h1>{category ? category : 'All Posts'}</h1>
-               <Link to="/add-edit" className="secondary-link">Add Post</Link>
             </header>
-            {category ? (
-               this.props.posts
-                  .filter(post => post.category === category)
-                  .map(post => (
-                     <PostSummary key={post.id} title={post.title} author={post.author} date={post.timestamp} votes={post.voteScore} comments="5" />
-                  ))
-            ) : (
-               this.props.posts
-                  .map(post => (
-                     <PostSummary key={post.id} title={post.title} author={post.author} date={post.timestamp} votes={post.voteScore} comments="5" />
-                  ))
-            )}
-            <Link to="/post-edit">LinkyLink</Link>
+            {postList.map(post => <PostSummary key={post.id} post={post} />)}
+            <div className="buttons-block">
+               <Link to="/post-edit" className="button-link">Add Post</Link>
+            </div>
          </section>
       )
    }

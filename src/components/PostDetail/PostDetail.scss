@@ -16,21 +16,31 @@
 } // end post-detail
 
 .post-details-block {
-   address {
-      font-size: 16px;
-      font-style: normal;
-      margin-bottom: 5px;
+   display: flex;
+   .layout-block-1 {
+      flex-basis: 70%;
+      address {
+         font-size: 16px;
+         font-style: normal;
+         margin-bottom: 5px;
+      }
+      time {
+         font-style: italic;
+         color: #7e7e7e;
+      }
+   } // end layout block 1
+   .layout-block-2 {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center; 
+      flex-basis: 30%;
+      color: rgb(88, 88, 88);
    }
-
-   time {
-      font-style: italic;
-   }
-} // end post det
+} // end post details block
 
 .post-content {
    font-size: 16px;
    line-height: 2;
-
    p {
       margin-bottom: 20px;
    }

@@ -10,13 +10,23 @@
     color: #384046;
     font-weight: 700; }
 
-.post-details-block address {
-  font-size: 16px;
-  font-style: normal;
-  margin-bottom: 5px; }
-
-.post-details-block time {
-  font-style: italic; }
+.post-details-block {
+  display: flex; }
+  .post-details-block .layout-block-1 {
+    flex-basis: 70%; }
+    .post-details-block .layout-block-1 address {
+      font-size: 16px;
+      font-style: normal;
+      margin-bottom: 5px; }
+    .post-details-block .layout-block-1 time {
+      font-style: italic;
+      color: #7e7e7e; }
+  .post-details-block .layout-block-2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-basis: 30%;
+    color: #585858; }
 
 .post-content {
   font-size: 16px;

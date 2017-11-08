@@ -27,9 +27,10 @@ export const getPost = id => {
 }
 
 // Add a new post
-export const createPost = (post) =>
+export const createPost = (post) => {
    fetch(`${apiServer}/posts`, {
       method: 'POST',
       headers,
       body: JSON.stringify(post)
    })
+}

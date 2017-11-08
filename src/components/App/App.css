@@ -26,21 +26,8 @@ textarea {
   outline: none;
   font-size: 14px; }
 
-.icon-counter {
-  display: flex;
-  flex-basis: 50px;
-  justify-content: flex-end;
-  align-items: center;
-  color: #656565; }
-  .icon-counter i {
-    flex-basis: 15px;
-    margin-right: 5px; }
-    .icon-counter i svg {
-      width: 100%;
-      height: auto; }
-  .icon-counter span {
-    font-size: 14px;
-    font-weight: 300; }
+:focus {
+  outline: none; }
 
 .secondary-link {
   color: dimgray;
@@ -51,3 +38,30 @@ textarea {
     color: #009bff; }
   .secondary-link.last {
     margin-left: 15px; }
+
+.button-link {
+  display: inline-block;
+  background: #E6E6E6;
+  font-size: 14px;
+  padding: 10px 15px;
+  color: #808080;
+  min-width: 150px;
+  text-align: center; }
+  .button-link:hover {
+    background: #009bff;
+    color: #ffffff; }
+  .button-link + .button-link {
+    margin-left: 5px; }
+  .button-link.submit {
+    background: #009bff;
+    color: #ffffff; }
+    .button-link.submit:disabled {
+      background: #E6E6E6;
+      color: #808080; }
+
+.buttons-block {
+  display: flex;
+  margin: 15px 0; }
+  .buttons-block button {
+    padding: 10px 25px;
+    border: none; }

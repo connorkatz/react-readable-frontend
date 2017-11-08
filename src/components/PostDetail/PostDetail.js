@@ -1,47 +1,63 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, Link, withRouter } from 'react-router-dom';
+import VoteScore from '../VoteScore/VoteScore';
+import CommentScore from '../CommentScore/CommentScore';
+import Date from '../Date/Date';
 import CommentBlock from '../CommentBlock/CommentBlock';
 import './PostDetail.css';
 
 class PostDetail extends Component {
    render() {
-      const { id } = this.props.match.params
+      const { id } = this.props.match.params;
+      const post = this.props.posts.find(post => post.id === id);
 
-      return (
-         <article className="post-detail">
-            <header>
-               <h1>Stuff</h1>
-               <Link to="/add-edit" className="secondary-link">Edit Post</Link>
-               <button className="secondary-link last">Delete Post</button>
-            </header>
-
-            <div className="post-details-block">
-               <div className="layout-block-1">
-                  <address>Tom Smith</address>
-                  <time>1/27/17</time>
+      if (!post) {
+         return (
+            <article className="post-detail">
+               <header>
+                  <h1>No Post Found</h1>
+               </header>
+               <div className="buttons-block">
+                  <Link to="/" className="button-link">All Posts</Link>
                </div>
-               <div className="layout-block-2">
-                  <div className="votes">
-                     <span>+10</span>
+            </article>
+         )
+      } else {
+         const { title, author, timestamp, voteScore, body } = post;
+         return (
+            <article className="post-detail">
+               <header>
+                  <h1>{title}</h1>
+               </header>
+               <div className="post-details-block">
+                  <div className="layout-block-1">
+                     <address>By: {author}</address>
+                     <Date timestamp={timestamp} />
                   </div>
-                  <div className="vote-option down">
+                  <div className="layout-block-2">
+                     <VoteScore votes={voteScore} />
+                     <CommentScore comments="20" />
                   </div>
                </div>
-            </div>
-
-            {id}
-
-            <div className="post-content">
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend velit ligula. Donec tempor ut nibh pretium gravida. Nullam eleifend tincidunt sapien, posuere scelerisque felis ornare hendrerit. Nunc volutpat, sem sed tempus egestas, mauris erat volutpat augue, tincidunt blandit sem lacus ut eros. In hac habitasse platea dictumst. Etiam sit amet odio vehicula, aliquet nulla a, efficitur ante. Sed pretium magna eu dignissim condimentum.</p>
-
-               <p>Quisque ullamcorper velit nec sem hendrerit ultricies. Quisque et mi orci. Morbi at mollis eros. Morbi convallis velit eu commodo egestas. Pellentesque suscipit dolor vel dui feugiat finibus. Curabitur malesuada, lorem eu lacinia semper, mi nisi commodo nulla, sit amet rhoncus orci nisl id neque. Vestibulum vitae felis erat. Donec ac finibus sem. Aenean porta sem quis condimentum tempus. Duis eget est nibh. Fusce ligula sem, congue non mollis nec, faucibus vitae purus. Donec metus tellus, ultrices in dolor in, ullamcorper molestie nulla. Sed est lorem, auctor vel sollicitudin sed, aliquam id arcu. Nullam blandit bibendum nibh, eget sodales arcu cursus vel.</p>
-
-               <p>Donec sodales urna enim, eget commodo felis tincidunt sit amet. Proin ac euismod turpis. Vivamus maximus tellus vitae ipsum fermentum, a convallis lectus viverra. Nunc condimentum, arcu pharetra eleifend sollicitudin, quam sapien suscipit dui, eu facilisis turpis sapien id ante. Praesent porta, dolor non vehicula dignissim, metus mauris luctus lacus, non pellentesque quam ex at ipsum. Curabitur tortor dui, dapibus quis nulla non, pretium ultricies nulla. Aenean erat lectus, accumsan non dui at, varius sollicitudin nulla. In vitae odio quis est facilisis sodales. Morbi id elit quis velit dignissim consectetur et ac elit. Aliquam eleifend vulputate neque at rhoncus. Morbi dapibus lobortis posuere. Sed suscipit vel urna tempor porttitor. Suspendisse potenti.</p>
-            </div>
-            <CommentBlock />
-         </article>
-      )
+               <div className="post-content">
+                  <p>{body}</p>
+               </div>
+               <div className="buttons-block">
+                  <Link to={`/post-edit/${id}`} className="button-link">Edit Post</Link>
+                  <button onClick={this.props.location.goBack} className="button-link">Delete Post</button>
+               </div>
+               <CommentBlock />
+            </article> 
+         )
+      }
    }
 }
 
-export default PostDetail;
+const mapStateToProps = ({ posts }) => (
+   {
+      posts
+   }
+)
+
+export default connect(mapStateToProps)(PostDetail);

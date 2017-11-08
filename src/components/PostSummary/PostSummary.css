@@ -17,7 +17,8 @@
     .post-summary .layout-block-1 h2 {
       font-size: 18px; }
     .post-summary .layout-block-1 address {
-      font-style: normal; }
+      font-style: normal;
+      margin-bottom: 5px; }
     .post-summary .layout-block-1 time {
       font-style: italic;
       color: #7e7e7e; }
@@ -25,4 +26,5 @@
     display: flex;
     justify-content: flex-end;
     flex-basis: 200px;
-    align-items: center; }
+    align-items: center;
+    color: #585858; }
