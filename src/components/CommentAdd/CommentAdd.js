@@ -28,10 +28,17 @@ class CommentAdd extends Component {
          id: uuid(),
          timestamp: Date.now(),
          author,
-         body
+         body,
+         voteScore: 1
       }
       ReadableAPI.addComment(commentData)
-         .then(() => this.props.dispatch(addComment(commentData)))
+         .then((comment) => this.props.dispatch(addComment(comment)))
+         this.setState(
+            {
+               author: '',
+               body: ''
+            }
+         )
    }
 
    removeComment = () => {
