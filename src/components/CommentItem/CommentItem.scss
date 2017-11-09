@@ -1,13 +1,23 @@
-.comment-item {
+.comment-content {
    background: #F1F1F1;
    margin-bottom: 2px;
    display: flex;
    align-items: center;
    .layout-block-1 {
       padding: 20px;
-      flex-basis: 80%
+      flex-basis: 80%;
+      p {
+         font-size: 14px;
+      }
+      address {
+         font-style: italic;
+         margin-bottom: 10px;
+      }
    }
    .layout-block-2 {
       flex-basis: 20%;
+      .post-vote-block {
+         margin-right: 20px;
+      }
    }
 }
