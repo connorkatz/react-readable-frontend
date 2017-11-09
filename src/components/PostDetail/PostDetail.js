@@ -11,7 +11,11 @@ class PostDetail extends Component {
    render() {
       const { id } = this.props.match.params;
       const post = this.props.posts.find(post => post.id === id);
-
+      const comments = this.props.comments[id];
+      let numComments = 0;
+      if (comments) {
+         numComments = comments.length;
+      }
       if (!post) {
          return (
             <article className="post-detail">
@@ -37,7 +41,7 @@ class PostDetail extends Component {
                   </div>
                   <div className="layout-block-2">
                      <VoteScore votes={voteScore} />
-                     <CommentScore comments="20" />
+                     <CommentScore comments={numComments} />
                   </div>
                </div>
                <div className="post-content">
@@ -47,16 +51,17 @@ class PostDetail extends Component {
                   <Link to={`/post-edit/${id}`} className="button-link">Edit Post</Link>
                   <button onClick={this.props.location.goBack} className="button-link">Delete Post</button>
                </div>
-               <CommentBlock />
+               <CommentBlock comments={comments} parentId={id}/>
             </article> 
          )
       }
    }
 }
 
-const mapStateToProps = ({ posts }) => (
+const mapStateToProps = ({ posts, comments }) => (
    {
-      posts
+      posts,
+      comments
    }
 )
 

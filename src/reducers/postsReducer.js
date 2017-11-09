@@ -1,44 +1,34 @@
-import { GET_ALL_POSTS, ADD_POST, UPDATE_POST, DELETE_POST } from '../actions/postsActions';
+import { GET_ALL_POSTS, ADD_NEW_POST, UPDATE_POST, DELETE_POST } from '../actions/postsActions';
 
 const postsReducer = (state = [], action) => {
-   const { posts, id, timestamp, title, author, body, category } = action;
+   const { posts, id, timestamp, title, author, body, category, voteScore } = action;
 
    switch (action.type) {
       case GET_ALL_POSTS:
          return [...posts]
-      case ADD_POST:
-         return {
-            ...state,
-            posts: [
-               ...state.posts,
+      case ADD_NEW_POST:
+         return [
+               ...state,
                {
                   id,
                   timestamp,
                   title,
                   author,
                   body,
-                  category
+                  category,
+                  voteScore
                }
             ]
-         }
       case UPDATE_POST:
-         return {
-            ...state,
-            posts: state.posts.map(post => {
-               return id === post.id ? {
-                  ...post,
-                  title,
-                  author,
-                  body,
-                  category
-               } : post
-            })
-         }
+         return state.map(post =>
+            (post.id === id) ? {
+                 ...post,
+                 title,
+                 body 
+            } : post
+         )
       case DELETE_POST:
-         return {
-            ...state,
-            posts: state.posts.filter(post => id !== post.id)
-         }
+         return state.posts.filter(post => post.id !== id)
       default:
          return state;
    }

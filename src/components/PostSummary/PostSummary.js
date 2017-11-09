@@ -8,8 +8,12 @@ import './PostSummary.css'
 
 class PostSummary extends Component {
    render() {
-      const { id, title, author, timestamp, voteScore, comments } = this.props.post;
-
+      const { id, title, author, timestamp, voteScore } = this.props.post;
+      const {comments} = this.props;
+      let numComments = 0;
+      if (comments) {
+         numComments = comments.length;
+      }
       return (
          <Link className="post-link" to={`/posts/${id}`}>
             <article className="post-summary">
@@ -20,7 +24,7 @@ class PostSummary extends Component {
                </div>
                <div className="layout-block-2">
                   <VoteScore votes={voteScore} />
-                  <CommentScore comments="20" />
+                  <CommentScore comments={numComments} />
                </div>
             </article>
          </Link>

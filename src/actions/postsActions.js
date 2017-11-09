@@ -1,4 +1,4 @@
-export const ADD_POST = 'ADD_POST';
+export const ADD_NEW_POST = 'ADD_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const GET_ALL_POSTS = 'GET_ALL_POSTS';
@@ -10,23 +10,23 @@ export const getAllPosts = ( posts ) => (
    }
 )
 
-export const addPost = ({ id, category, timestamp, title, author, body }) => (
+export const addNewPost = ({ id, category, timestamp, title, author, body }) => (
    {
-      type: ADD_POST,
+      type: ADD_NEW_POST,
       id,
       timestamp,
       title,
       author,
-      body
+      body,
+      voteScore: 1
    }
 )
 
-export const updatePost = ({ id, title, author, body }) => (
+export const updatePost = ({ id, title, body }) => (
    {
       type: UPDATE_POST,
       id,
       title,
-      author,
       body
    }
 )

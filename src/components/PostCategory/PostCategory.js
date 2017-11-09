@@ -7,7 +7,7 @@ import './PostCategory.css';
 class PostCategory extends Component {
    render() {
       const { category } = this.props.match.params;
-      const { posts } = this.props;
+      const { posts, comments } = this.props;
       let postList = [];
 
       if (category) {
@@ -21,7 +21,7 @@ class PostCategory extends Component {
             <header>
                <h1>{category ? category : 'All Posts'}</h1>
             </header>
-            {postList.map(post => <PostSummary key={post.id} post={post} />)}
+            {postList.map(post => <PostSummary key={post.id} post={post} comments={comments[post.id]}/>)}
             <div className="buttons-block">
                <Link to="/post-edit" className="button-link">Add Post</Link>
             </div>
@@ -30,9 +30,10 @@ class PostCategory extends Component {
    }
 }
 
-const mapStateToProps = ({ posts }) => (
+const mapStateToProps = ({ posts, comments }) => (
    {
-      posts
+      posts,
+      comments
    }
 )
 

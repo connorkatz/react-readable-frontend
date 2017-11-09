@@ -8,15 +8,23 @@ import PostEdit from '../PostEdit/PostEdit';
 import { connect } from 'react-redux';
 import { getAllPosts } from '../../actions/postsActions';
 import { getAllCategories } from '../../actions/categoriesActions';
+import { getPostComments } from '../../actions/commentsActions';
 import './App.css';
 
 class App extends Component {
    componentDidMount() {
-      ReadableAPI.getAllPosts().then(posts => {
+      ReadableAPI.getAllPosts()
+      .then(posts => {
          this.props.dispatch(getAllPosts(posts))
+         const postIDs = posts.map(post => post.id)
+         postIDs.forEach(postID => (
+            ReadableAPI.getPostComments(postID)
+               .then(postComments => this.props.dispatch(getPostComments(postID, postComments)))
+         ));
       });
-      ReadableAPI.getAllCategories().then(categories => {
-         this.props.dispatch(getAllCategories(categories));
+      ReadableAPI.getAllCategories()
+         .then(categories => {
+            this.props.dispatch(getAllCategories(categories));
       });
    }
 

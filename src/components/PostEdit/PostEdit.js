@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as ReadableAPI from '../../util/ReadableAPI';
+import AlertNotice from '../AlertNotice/AlertNotice';
+import { addNewPost, updatePost } from '../../actions/postsActions';
+import uuid from 'uuid/v1';
 import './PostEdit.css';
 
 class PostEdit extends Component {
 
    state = {
-      checkForPostContent: true,
+      isNewPost: true,
+      postSubmitted: false,
       title: '',
       author: '',
       category: '',
@@ -15,25 +19,23 @@ class PostEdit extends Component {
    }
 
    componentDidMount() {
-      ReadableAPI.getAllCategories().then(categories => {
-         this.setState(categories);
-      });
+      this.setState(this.state);
    }
 
    componentDidUpdate() {
-      const { checkForPostContent } = this.state;
+      const { isNewPost } = this.state;
       const { id } = this.props.match.params;
-      if (checkForPostContent) {
+      if (isNewPost) {
          const post = this.props.posts.find(post => post.id === id);
          if (post) {
-            const {title, author, category, body} = post;
+            const { title, author, category, body } = post;
             this.setState(
-               { 
+               {
+                  isNewPost: false,
                   title,
                   author,
                   category,
-                  body,
-                  checkForPostContent: false
+                  body
                }
             )
          }
@@ -48,28 +50,59 @@ class PostEdit extends Component {
       )
    }
 
+   handlePostSubmit = event => {
+      event.preventDefault();
+      const { isNewPost, title, author, category, body } = this.state;
+      const { id } = this.props.match.params
+      if (isNewPost) {
+         const postData = {
+            id: uuid(),
+            timestamp: Date.now(),
+            title,
+            author,
+            category,
+            body
+         }
+         ReadableAPI.addNewPost(postData)
+            .then(postData => {
+               this.props.dispatch(addNewPost(postData));
+               this.setState({ postSubmitted: true })
+            });
+      } else {
+         const postData = {
+            title,
+            body
+         }
+         ReadableAPI.updatePost(postData, id)
+            .then(postData => {
+               this.props.dispatch(updatePost(postData));
+               this.setState({ postSubmitted: true })
+            });
+      }
+   }
+
    render() {
-      const { title, author, category, body } = this.state;
-      const {categories, posts} = this.props;
-      const post = posts.find(post => post.id === this.props.match.params);
+      const { isNewPost, postSubmitted, title, author, category, body } = this.state;
+      const { categories, posts } = this.props;
 
       return (
          <section className="post-add-edit">
-            <form onSubmit={this.submitPost}>
+            <AlertNotice type="success" active={postSubmitted} text={isNewPost ? "Post Added" : "Post Updated"} />
+            <form onSubmit={this.handlePostSubmit}>
                <div className="form-item">
                   <label>Title</label>
-                  <input type="text" name="title" value={title} onChange={this.handleFormChange}/>
+                  <input type="text" name="title" value={title} onChange={this.handleFormChange} />
                </div>
                <div className="form-item">
                   <label>Author</label>
-                  <input type="text" name="author" value={author} onChange={this.handleFormChange}/>
+                  <input type="text" name="author" value={author} onChange={this.handleFormChange} />
                </div>
                <div className="form-item">
                   <label>Category</label>
                   <span className="select-container">
                      <select value={category} name="category" onChange={this.handleFormChange}>
                         <option value="">Select Category</option>
-                        {categories.map(category => 
+                        {categories.map(category =>
                            <option key={category.path} value={category.path}>{category.name}</option>
                         )}
                      </select>
