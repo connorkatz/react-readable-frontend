@@ -8,8 +8,8 @@ import './VoteScore.css';
 class VoteScore extends Component {
    render() {
 
-      const { votes } = this.props
-      const votesAbs = Math.abs(votes)
+      const { numVotes } = this.props
+      const votesAbs = Math.abs(numVotes)
 
       return (
          <div className="post-vote-block">
@@ -19,7 +19,7 @@ class VoteScore extends Component {
             </div>
             <div className="vote-score icon-counter">
                <i>
-                  {votes > 0 ? (
+                  {numVotes > 0 ? (
                      <FaThumbsOUp />
                   ) : (
                         <FaThumbsODown />

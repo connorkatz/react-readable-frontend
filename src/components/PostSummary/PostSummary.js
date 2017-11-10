@@ -12,7 +12,8 @@ class PostSummary extends Component {
       const {comments} = this.props;
       let numComments = 0;
       if (comments) {
-         numComments = comments.length;
+         numComments = comments.filter(comment => comment.deleted != true)
+         numComments = numComments.length
       }
       return (
          <Link className="post-link" to={`/posts/${id}`}>
@@ -23,8 +24,8 @@ class PostSummary extends Component {
                   <Date timestamp={timestamp} />
                </div>
                <div className="layout-block-2">
-                  <VoteScore votes={voteScore} />
-                  <CommentScore comments={numComments} />
+                  <VoteScore numVotes={voteScore} />
+                  <CommentScore numComments={numComments} />
                </div>
             </article>
          </Link>

@@ -21,7 +21,12 @@ class PostCategory extends Component {
             <header>
                <h1>{category ? category : 'All Posts'}</h1>
             </header>
-            {postList.map(post => <PostSummary key={post.id} post={post} comments={comments[post.id]}/>)}
+            {postList.map(post => 
+               post.deleted !== true ? 
+                  <PostSummary key={post.id} post={post} comments={comments[post.id]}/>
+                  : null
+               )
+            }
             <div className="buttons-block">
                <Link to="/post-edit" className="button-link">Add Post</Link>
             </div>

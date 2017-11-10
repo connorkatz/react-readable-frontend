@@ -5,12 +5,17 @@ import './CommentScore.css';
 class CommentScore extends Component {
    render() {
 
-      const { comments } = this.props
+      const { numComments } = this.props
+      let commentCount = (comments) => {
+         comments.filter(comment => comment.deleted != true)
+         return commentCount.length
+      }
+         
 
       return (
          <div className="comment-score-block">
             <i><FaCommentO /></i>
-            <span>{comments}</span>
+            <span>{numComments}</span>
          </div>
       )
    }

@@ -33,7 +33,7 @@ const commentsReducer = (state = {}, action) => {
             [parentId]: state[parentId].map(comment =>
                (comment.id === id) ? {
                   ...comment,
-                  body: body
+                  body
                } : comment)
          }
       case DELETE_COMMENT:

@@ -8,27 +8,32 @@ const postsReducer = (state = [], action) => {
          return [...posts]
       case ADD_NEW_POST:
          return [
-               ...state,
-               {
-                  id,
-                  timestamp,
-                  title,
-                  author,
-                  body,
-                  category,
-                  voteScore
-               }
-            ]
+            ...state,
+            {
+               id,
+               timestamp,
+               title,
+               author,
+               body,
+               category,
+               voteScore
+            }
+         ]
       case UPDATE_POST:
          return state.map(post =>
             (post.id === id) ? {
-                 ...post,
-                 title,
-                 body 
+               ...post,
+               title,
+               body
             } : post
          )
       case DELETE_POST:
-         return state.posts.filter(post => post.id !== id)
+         return state.map(post =>
+            (post.id === id) ? {
+               ...post,
+               deleted: true
+            } : post
+         )
       default:
          return state;
    }

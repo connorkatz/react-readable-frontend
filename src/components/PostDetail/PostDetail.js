@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Link, withRouter } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import * as ReadableAPI from '../../util/ReadableAPI';
 import VoteScore from '../VoteScore/VoteScore';
 import CommentScore from '../CommentScore/CommentScore';
 import Date from '../Date/Date';
 import CommentBlock from '../CommentBlock/CommentBlock';
+import { deletePost } from '../../actions/postsActions';
 import './PostDetail.css';
 
 class PostDetail extends Component {
+
+   deletePost = () => {
+      const {id} = this.props.match.params;
+      ReadableAPI.deletePost(id)
+         .then(this.props.dispatch(deletePost(id)))
+   }
+
+
    render() {
       const { id } = this.props.match.params;
       const post = this.props.posts.find(post => post.id === id);
       const comments = this.props.comments[id];
       let numComments = 0;
       if (comments) {
-         numComments = comments.length;
+         numComments = comments.filter(comment => comment.deleted != true)
+         numComments = numComments.length
       }
       if (!post) {
          return (
@@ -40,8 +51,8 @@ class PostDetail extends Component {
                      <Date timestamp={timestamp} />
                   </div>
                   <div className="layout-block-2">
-                     <VoteScore votes={voteScore} />
-                     <CommentScore comments={numComments} />
+                     <VoteScore numVotes={voteScore} />
+                     <CommentScore numComments={numComments} />
                   </div>
                </div>
                <div className="post-content">
@@ -49,10 +60,10 @@ class PostDetail extends Component {
                </div>
                <div className="buttons-block">
                   <Link to={`/post-edit/${id}`} className="button-link">Edit Post</Link>
-                  <button onClick={this.props.location.goBack} className="button-link">Delete Post</button>
+                  <button onClick={this.deletePost} className="button-link">Delete Post</button>
                </div>
-               <CommentBlock comments={comments} parentId={id}/>
-            </article> 
+               <CommentBlock comments={comments} parentId={id} />
+            </article>
          )
       }
    }
@@ -65,4 +76,4 @@ const mapStateToProps = ({ posts, comments }) => (
    }
 )
 
-export default withRouter(connect(mapStateToProps)(PostDetail));
+export default connect(mapStateToProps)(PostDetail);

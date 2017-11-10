@@ -49,16 +49,12 @@ class CommentAdd extends Component {
       )
    }
 
-   submitComment = event => {
-      event.preventDefault();
-   }
-
    render() {
       const { body, author } = this.state;
       return (
          <section className="comment-add">
             <form onSubmit={this.submitComment}>
-               <input type="text" name="author" value={author} onChange={this.handleFormChange} placeholder="Your Name" />
+               <input type="text" name="author" value={author} onChange={this.handleFormChange} placeholder="Troll handle" />
                <textarea value={body} name="body" placeholder="Trolling begins here..." onChange={this.handleFormChange}></textarea>
                {body || author ?
                   <div className="buttons-block">

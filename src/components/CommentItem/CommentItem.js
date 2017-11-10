@@ -10,6 +10,7 @@ import { Readable } from 'stream';
 class CommentItem extends Component {
    state = {
       editMode: false,
+      bodyClone: '',
       body: ''
    }
 
@@ -22,12 +23,30 @@ class CommentItem extends Component {
       )
    }
 
-   toggleEditMode = () => {
-      this.setState(state => (
+   cloneBody = () => {
+      const { body } = this.state
+      this.setState(
          {
-            editMode: !state.editMode
+            bodyClone: body
          }
-      ))
+      )
+   }
+
+   cancelComment = () => {
+      const {bodyClone} = this.state;
+      this.setState(
+         {
+            body: bodyClone
+         }
+      )
+   }
+
+   toggleEditMode = (event) => {
+      this.setState(
+         {
+            editMode: !this.state.editMode
+         }
+      )
    }
 
    handleFormChange = event => {
@@ -38,14 +57,14 @@ class CommentItem extends Component {
       )
    }
 
-   updateComment = () => {
+   updateComment = (event) => {
       const { parentId } = this.props;
       const { id } = this.props.comment;
       const { body } = this.state;
       const timestamp = uuid();
       ReadableAPI.updateComment(id, body, timestamp)
-      .then(this.props.dispatch(updateComment(parentId, id, body)));
-      this.toggleEditMode();
+         .then(this.props.dispatch(updateComment(parentId, id, body)));
+         this.toggleEditMode(event);
    }
 
    deleteComment = () => {
@@ -62,10 +81,10 @@ class CommentItem extends Component {
          <div className="comment-item">
             {editMode ? (
                <div className="comment-edit">
-                  <textarea value={this.state.body} name="body" onChange={this.handleFormChange}></textarea>
+                  <textarea value={this.state.body} name="body" onChange={this.handleFormChange} onFocus={this.cloneBody}></textarea>
                   <div className="buttons-block">
                      <button type="submit" className="button-link submit" onClick={this.updateComment}>Update my trollings</button>
-                     <button className="secondary-link" onClick={this.toggleEditMode}>Nevermind I am happy with my trollings</button>
+                     <button id="cancel-comment" className="secondary-link" onClick={() => {this.cancelComment(); this.toggleEditMode();}}>Nevermind I am happy with my trollings</button>
                   </div>
                </div>
             ) : (
@@ -80,7 +99,7 @@ class CommentItem extends Component {
                         </div>
                      </div>
                      <div className="layout-block-2">
-                        <VoteScore votes={voteScore} />
+                        <VoteScore numVotes={voteScore} />
                      </div>
                   </div>
                )}
