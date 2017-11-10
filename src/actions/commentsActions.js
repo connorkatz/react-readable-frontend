@@ -23,16 +23,19 @@ export const addComment = ({parentId, id, author, body, timestamp, voteScore}) =
    }
 )
 
-export const updateComment = (comment) => (
+export const updateComment = (parentId, id, body) => (
    {
       type: UPDATE_COMMENT,
-      comment
+      parentId,
+      id,
+      body
    }
 )
 
-export const deletePost = (comment) => (
+export const deleteComment = (parentId, id) => (
    {
       type: DELETE_COMMENT,
-      comment
+      parentId,
+      id
    }
 )

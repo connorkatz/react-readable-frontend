@@ -29,11 +29,21 @@ const commentsReducer = (state = {}, action) => {
          }
       case UPDATE_COMMENT:
          return {
-
+            ...state,
+            [parentId]: state[parentId].map(comment =>
+               (comment.id === id) ? {
+                  ...comment,
+                  body: body
+               } : comment)
          }
       case DELETE_COMMENT:
          return {
-
+            ...state,
+            [parentId]: state[parentId].map(comment =>
+               (comment.id === id) ? {
+                  ...comment,
+                  deleted: true
+               } : comment)
          }
       default:
          return state;

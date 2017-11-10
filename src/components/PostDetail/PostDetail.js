@@ -65,4 +65,4 @@ const mapStateToProps = ({ posts, comments }) => (
    }
 )
 
-export default connect(mapStateToProps)(PostDetail);
+export default withRouter(connect(mapStateToProps)(PostDetail));

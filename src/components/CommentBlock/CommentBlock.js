@@ -7,9 +7,10 @@ const CommentBlock = (props) => {
    const { comments, parentId } = props;
    let postComments = []
    if (comments) {
-      postComments = comments.map(comment => 
-         <CommentItem key={comment.id} comment={comment} />
-      )
+      postComments = comments.map(comment => comment.deleted !== true ?
+         (
+            <CommentItem key={comment.id} parentId={parentId} comment={comment} />
+         ) : null)
    }
    return (
       <section className="comment-block">

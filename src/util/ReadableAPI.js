@@ -34,8 +34,8 @@ export const addNewPost = (post) => {
       headers,
       body: JSON.stringify(post)
    })
-   .then(response => response.json())
-   .then(data => data)
+      .then(response => response.json())
+      .then(data => data)
 }
 
 // Update existing post
@@ -45,13 +45,13 @@ export const updatePost = (post, id) => {
       headers,
       body: JSON.stringify(post)
    })
-   .then(response => response.json())
-   .then(data => data)
+      .then(response => response.json())
+      .then(data => data)
 }
 
 // Get comments for post
 export const getPostComments = (id) => {
-   return fetch(`${apiServer}/posts/${id}/comments`, {headers})
+   return fetch(`${apiServer}/posts/${id}/comments`, { headers })
       .then(response => response.json())
       .then(data => data)
 }
@@ -65,4 +65,26 @@ export const addComment = (comment) => {
    })
    .then(response => response.json())
    .then(data => data)
+}
+
+// Update comment
+export const updateComment = (id, body, timestamp) => {
+   return fetch(`${apiServer}/comments/${id}`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({body, timestamp})
+   })
+   .then(response => response.json())
+   .then(data => data)
+}
+
+// Delete comment
+export const deleteComment = (id) => {
+   return fetch(`${apiServer}/comments/${id}`, {
+      method: 'DELETE',
+      headers,
+      body: JSON.stringify(id)
+   })
+      .then(response => response.json())
+      .then(data => data)
 }
