@@ -78,6 +78,12 @@ textarea {
          color: #808080;
       }
    }
+   &.cancel {
+      background: transparent;
+      &:hover {
+         color: #009bff;
+      }
+   }
 }
 
 .buttons-block {

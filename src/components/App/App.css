@@ -58,6 +58,10 @@ textarea {
     .button-link.submit:disabled {
       background: #E6E6E6;
       color: #808080; }
+  .button-link.cancel {
+    background: transparent; }
+    .button-link.cancel:hover {
+      color: #009bff; }
 
 .buttons-block {
   display: flex;
