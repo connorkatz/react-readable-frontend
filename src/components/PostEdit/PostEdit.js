@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as ReadableAPI from '../../util/ReadableAPI';
 import AlertNotice from '../AlertNotice/AlertNotice';
@@ -15,7 +15,8 @@ class PostEdit extends Component {
       title: '',
       author: '',
       category: '',
-      body: ''
+      body: '',
+      bodyClone: ''
    }
 
    componentDidMount() {
@@ -50,7 +51,7 @@ class PostEdit extends Component {
       )
    }
 
-   handlePostSubmit = event => {
+   updatePost = event => {
       event.preventDefault();
       const { isNewPost, title, author, category, body } = this.state;
       const { id } = this.props.match.params
@@ -84,6 +85,7 @@ class PostEdit extends Component {
    render() {
       const { isNewPost, postSubmitted, title, author, category, body } = this.state;
       const { categories, posts } = this.props;
+      const { id } = this.props.match.params;
 
       return (
          <section className="post-add-edit">
@@ -118,8 +120,8 @@ class PostEdit extends Component {
                   <textarea name="body" value={body} onChange={this.handleFormChange} placeholder="Write seemingly banal things that will anger someone..."></textarea>
                </div>
                <div className="buttons-block">
-                  <button className="submit button-link" disabled={!title || !author || !category || !body}>Save my random musings</button>
-                  <button onClick={this.props.history.goBack} className="cancel secondary-link">Nevermind, I got the thinkers block</button>
+                  <button onClick={this.updatePost} className="submit button-link" disabled={!title || !author || !category || !body}>Save my random musings</button>
+                  <Link to={`/posts/${id}`} className="cancel button-link secondary-link">Nevermind, I got the thinkers block</Link>
                </div>
             </form>
          </section>
