@@ -1,9 +1,8 @@
 const apiServer = 'http://localhost:3001';
 const headers = {
-   'Authorization': 'connor-katz2',
+   'Authorization': 'connor-katz',
    'Accept': 'application/json',
    'Content-Type': 'application/json'
-
 }
 
 // Get all categories
@@ -60,11 +59,11 @@ export const deletePost = (id) => {
 }
 
 // Vote for post
-export const voteForPost = (vote, id) => {
-   return fetch(`${apiServer}/posts/${id}`, {
+export const voteForPost = (vote, postId) => {
+   return fetch(`${apiServer}/posts/${postId}`, {
       method: 'POST',
       headers,
-      body: vote
+      body: JSON.stringify({ option: vote })
    })
       .then(response => response.json())
       .then(data => data)
@@ -105,6 +104,17 @@ export const deleteComment = (id) => {
       method: 'DELETE',
       headers,
       body: JSON.stringify(id)
+   })
+      .then(response => response.json())
+      .then(data => data)
+}
+
+// Vote for comment
+export const voteForComment = (vote, commentId) => {
+   return fetch(`${apiServer}/comments/${commentId}`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ option: vote })
    })
       .then(response => response.json())
       .then(data => data)

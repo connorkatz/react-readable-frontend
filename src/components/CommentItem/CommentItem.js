@@ -75,6 +75,7 @@ class CommentItem extends Component {
    }
 
    render() {
+      const {parentId} = this.props;
       const { id, author, voteScore } = this.props.comment;
       const { editMode, body } = this.state;
       return (
@@ -99,7 +100,7 @@ class CommentItem extends Component {
                         </div>
                      </div>
                      <div className="layout-block-2">
-                        <VoteScore numVotes={voteScore} />
+                        <VoteScore numVotes={voteScore} postId={parentId} commentId={id}/>
                      </div>
                   </div>
                )}

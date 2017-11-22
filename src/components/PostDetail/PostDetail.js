@@ -6,15 +6,27 @@ import VoteScore from '../VoteScore/VoteScore';
 import CommentScore from '../CommentScore/CommentScore';
 import Date from '../Date/Date';
 import CommentBlock from '../CommentBlock/CommentBlock';
+import AlertNotice from '../AlertNotice/AlertNotice'
 import { deletePost } from '../../actions/postsActions';
 import './PostDetail.css';
 
 class PostDetail extends Component {
 
+   state = {
+      postDeleted: false
+   }
+
    deletePost = () => {
-      const {id} = this.props.match.params;
+      const { id } = this.props.match.params;
       ReadableAPI.deletePost(id)
-         .then(this.props.dispatch(deletePost(id)))
+         .then(() => {
+            this.props.dispatch(deletePost(id));
+            this.setState(
+               {
+                  postDeleted: true
+               }
+            )
+         })
    }
 
 
@@ -39,9 +51,11 @@ class PostDetail extends Component {
             </article>
          )
       } else {
+         const { postDeleted } = this.state;
          const { title, author, timestamp, voteScore, body } = post;
          return (
             <article className="post-detail">
+               <AlertNotice type="success" active={postDeleted} text="Post Deleted" />
                <header>
                   <h1>{title}</h1>
                </header>
@@ -51,7 +65,7 @@ class PostDetail extends Component {
                      <Date timestamp={timestamp} />
                   </div>
                   <div className="layout-block-2">
-                     <VoteScore numVotes={voteScore} />
+                     <VoteScore numVotes={voteScore} postId={id} />
                      <CommentScore numComments={numComments} />
                   </div>
                </div>

@@ -2,6 +2,7 @@ export const GET_POST_COMMENTS = 'GET_POST_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const VOTE_COMMENT = 'VOTE_COMMENT';
 
 export const getPostComments = (parentId, comments) => (
    {
@@ -37,5 +38,14 @@ export const deleteComment = (parentId, id) => (
       type: DELETE_COMMENT,
       parentId,
       id
+   }
+)
+
+export const voteComment = (parentId, id, vote) => (
+{
+      type: VOTE_COMMENT,
+      parentId,
+      id,
+      vote
    }
 )

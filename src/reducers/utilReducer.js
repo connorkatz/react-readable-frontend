@@ -3,10 +3,12 @@ import { SET_SORT_BY } from '../actions/utilActions';
 const defaultState = {
    sortBy: [
       {
+         id: 'timestamp',
          name: 'date',
          active: true
       },
       {
+         id: 'voteScore',
          name: 'votes',
          active: false
       }

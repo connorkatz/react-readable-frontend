@@ -1,6 +1,10 @@
 .alert-notice {
+   position: fixed;
+   bottom: 15px;
+   left: 15px;
    background: #B5E1B5;
    padding: 25px;
+   min-width: 200px;
+   text-align: center;
    border: 1px solid rgba(0,0,0,0.2);
-   margin-bottom: 25px;
 }

@@ -20,7 +20,8 @@ ul, ol {
 button {
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
-  cursor: pointer; }
+  cursor: pointer;
+  border-radius: 0; }
 
 textarea {
   outline: none;

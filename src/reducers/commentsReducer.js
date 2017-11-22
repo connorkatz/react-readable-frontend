@@ -1,8 +1,8 @@
-import { GET_POST_COMMENTS, ADD_COMMENT, UPDATE_COMMENT, DELETE_COMMENT } from '../actions/commentsActions';
+import { GET_POST_COMMENTS, ADD_COMMENT, UPDATE_COMMENT, DELETE_COMMENT, VOTE_COMMENT } from '../actions/commentsActions';
 
 
 const commentsReducer = (state = {}, action) => {
-   const { parentId, id, comments, timestamp, body, author, voteScore, deleted } = action;
+   const { parentId, id, comments, timestamp, body, author, voteScore, vote, deleted } = action;
 
    switch (action.type) {
       case GET_POST_COMMENTS:
@@ -13,6 +13,10 @@ const commentsReducer = (state = {}, action) => {
             ]
          }
       case ADD_COMMENT:
+         const hasComments = state[parentId];
+         if(!hasComments) {
+            state[parentId] = [];
+         }
          return {
             ...state,
             [parentId]: [
@@ -31,7 +35,7 @@ const commentsReducer = (state = {}, action) => {
          return {
             ...state,
             [parentId]: state[parentId].map(comment =>
-               (comment.id === id) ? {
+               comment.id === id ? {
                   ...comment,
                   body
                } : comment)
@@ -40,10 +44,19 @@ const commentsReducer = (state = {}, action) => {
          return {
             ...state,
             [parentId]: state[parentId].map(comment =>
-               (comment.id === id) ? {
+               comment.id === id ? {
                   ...comment,
                   deleted: true
                } : comment)
+         }
+      case VOTE_COMMENT:
+         return {
+            ...state,
+            [parentId]: state[parentId].map(comment =>
+               comment.id === id ? {
+                  ...comment,
+                  voteScore: vote === 'upVote' ? comment.voteScore + 1 : comment.voteScore - 1
+            } : comment)
          }
       default:
          return state;

@@ -8,9 +8,9 @@ import './PostCategory.css';
 class PostCategory extends Component {
    render() {
       const { category } = this.props.match.params;
-      const { posts, comments, sortByLabel } = this.props;
-      console.log(sortByLabel);
-      let postList = posts.sort(sortBy(sortByLabel));
+      const { posts, comments, sortByItem } = this.props;
+      let sortById = `-${sortByItem.id}`;
+      let postList = posts.sort(sortBy(sortById));
 
       if (category) {
          postList = posts.filter(post => post.deleted != true && post.category === category)
@@ -41,7 +41,7 @@ const mapStateToProps = ({ posts, comments, util }) => (
    {
       posts,
       comments,
-      sortByLabel: util.sortBy.find(sortItem =>
+      sortByItem: util.sortBy.find(sortItem =>
          sortItem.active === true
       )
    }

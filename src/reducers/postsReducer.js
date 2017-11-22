@@ -1,7 +1,7 @@
-import { GET_ALL_POSTS, ADD_NEW_POST, UPDATE_POST, DELETE_POST } from '../actions/postsActions';
+import { GET_ALL_POSTS, ADD_NEW_POST, UPDATE_POST, DELETE_POST, VOTE_POST } from '../actions/postsActions';
 
 const postsReducer = (state = [], action) => {
-   const { posts, id, timestamp, title, author, body, category, voteScore } = action;
+   const { posts, id, timestamp, title, author, body, category, voteScore, vote } = action;
 
    switch (action.type) {
       case GET_ALL_POSTS:
@@ -32,6 +32,13 @@ const postsReducer = (state = [], action) => {
             (post.id === id) ? {
                ...post,
                deleted: true
+            } : post
+         )
+      case VOTE_POST:
+         return state.map(post =>
+            (post.id == id) ? {
+               ...post,
+               voteScore: vote === 'upVote' ? post.voteScore + 1 : post.voteScore - 1
             } : post
          )
       default:

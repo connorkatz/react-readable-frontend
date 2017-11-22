@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import * as ReadableAPI from '../../util/ReadableAPI';
+import {votePost} from '../../actions/postsActions';
+import {voteComment} from '../../actions/commentsActions';
 import FaThumbsOUp from 'react-icons/lib/fa/thumbs-o-up';
 import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
 import FaCaretUp from 'react-icons/lib/fa/caret-up';
@@ -8,27 +11,50 @@ import './VoteScore.css';
 
 class VoteScore extends Component {
 
-   voteForPost(vote) {
-      const {id} = this.props.postId;
-      ReadableAPI.voteForPost(vote, id)
-      .then(
-         vote === 'upVote'
-      )
+   voteForPost(vote, event) {
+      event.preventDefault();
+      const { postId } = this.props;
+      ReadableAPI.voteForPost(vote, postId)
+         .then(this.props.dispatch(votePost(vote, postId)));
+   }
+
+   voteForComment(vote) {
+      const {postId, commentId} = this.props;
+      ReadableAPI.voteForComment(vote, commentId)
+         .then(this.props.dispatch(voteComment(postId, commentId, vote)));
    }
 
    render() {
-      const { numVotes, postId } = this.props
-      const votesAbs = Math.abs(numVotes)
+      const { numVotes, postId, commentId } = this.props;
+      const votesAbs = Math.abs(numVotes);
 
       return (
          <div className="post-vote-block">
             <div className="vote-arrows-block">
-               <i className="vote-arrow" onClick={() => {this.voteForPost('upVote')}}><FaCaretUp /></i>
-               <i className="vote-arrow"><FaCaretDown /></i>
+               <i className="vote-arrow"
+                  onClick={
+                     commentId ? 
+                        () => this.voteForComment('upVote')
+                     : 
+                        (event) => { this.voteForPost('upVote', event) }  
+                     }
+               >
+                  <FaCaretUp />
+               </i>
+               <i className="vote-arrow" 
+                  onClick={
+                     commentId ?
+                        () => this.voteForComment('downVote')
+                     :
+                        (event) => { this.voteForPost('downVote', event) }
+                     }
+               >
+                  <FaCaretDown />
+               </i>
             </div>
             <div className="vote-score icon-counter">
                <i>
-                  {numVotes > 0 ? (
+                  {numVotes >= 0 ? (
                      <FaThumbsOUp />
                   ) : (
                         <FaThumbsODown />
@@ -41,4 +67,4 @@ class VoteScore extends Component {
    }
 }
 
-export default VoteScore
+export default connect()(VoteScore);
