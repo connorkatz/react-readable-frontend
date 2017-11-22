@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Switch, Route, Link} from 'react-router-dom';
 import SelectList from '../SelectList/SelectList';
 import './Header.css';
 
@@ -13,11 +13,17 @@ const Header = (props) => {
                </Link>
             </div>   
             <nav className='nav-bar'>
-               <SelectList name="Category" />
-               <SelectList name="Sort by" />
+               <Switch>
+                  <Route path="/:category/posts" render={() => <SelectList type="link" name="Category" />} />
+                  <Route path="/" render={() => (<SelectList type="link" name="Category" />)} />
+               </Switch>
+               <Switch>
+                  <Route path="/:category/posts/:sortBy" render={() => <SelectList name="Sort by" />} />
+                  <Route path="/" render={() => <SelectList name="Sort by" />} />
+               </Switch>
             </nav>
          </header>
    )
 }
 
-export default Header
+export default Header;

@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Date from '../Date/Date';
 import VoteScore from '../VoteScore/VoteScore';
-import CommentScore from '../CommentScore/CommentScore'
-import FaCommentO from 'react-icons/lib/fa/comment-o'
-import './PostSummary.css'
+import CommentScore from '../CommentScore/CommentScore';
+import FaCommentO from 'react-icons/lib/fa/comment-o';
+import './PostSummary.css';
 
 class PostSummary extends Component {
    render() {
       const { id, title, author, timestamp, voteScore } = this.props.post;
-      const {comments} = this.props;
+      const { comments } = this.props;
       let numComments = 0;
       if (comments) {
-         numComments = comments.filter(comment => comment.deleted != true)
-         numComments = numComments.length
+         numComments = comments.filter(comment => comment.deleted != true);
+         numComments = numComments.length;
       }
       return (
          <Link className="post-link" to={`/posts/${id}`}>
@@ -24,7 +24,7 @@ class PostSummary extends Component {
                   <Date timestamp={timestamp} />
                </div>
                <div className="layout-block-2">
-                  <VoteScore numVotes={voteScore} />
+                  <VoteScore numVotes={voteScore} postId={id} />
                   <CommentScore numComments={numComments} />
                </div>
             </article>

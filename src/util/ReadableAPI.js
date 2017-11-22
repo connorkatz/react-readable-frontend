@@ -59,6 +59,17 @@ export const deletePost = (id) => {
       .then(data => data)
 }
 
+// Vote for post
+export const voteForPost = (vote, id) => {
+   return fetch(`${apiServer}/posts/${id}`, {
+      method: 'POST',
+      headers,
+      body: vote
+   })
+      .then(response => response.json())
+      .then(data => data)
+}
+
 // Get comments for post
 export const getPostComments = (id) => {
    return fetch(`${apiServer}/posts/${id}/comments`, { headers })
@@ -73,8 +84,8 @@ export const addComment = (comment) => {
       headers,
       body: JSON.stringify(comment)
    })
-   .then(response => response.json())
-   .then(data => data)
+      .then(response => response.json())
+      .then(data => data)
 }
 
 // Update comment
@@ -82,10 +93,10 @@ export const updateComment = (id, body, timestamp) => {
    return fetch(`${apiServer}/comments/${id}`, {
       method: 'PUT',
       headers,
-      body: JSON.stringify({body, timestamp})
+      body: JSON.stringify({ body, timestamp })
    })
-   .then(response => response.json())
-   .then(data => data)
+      .then(response => response.json())
+      .then(data => data)
 }
 
 // Delete comment

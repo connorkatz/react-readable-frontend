@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import sortBy from 'sort-by'
 import PostSummary from '../PostSummary/PostSummary';
 import './PostCategory.css';
 
 class PostCategory extends Component {
    render() {
       const { category } = this.props.match.params;
-      const { posts, comments } = this.props;
-      let postList = [];
+      const { posts, comments, sortByLabel } = this.props;
+      console.log(sortByLabel);
+      let postList = posts.sort(sortBy(sortByLabel));
 
       if (category) {
          postList = posts.filter(post => post.deleted != true && post.category === category)
@@ -35,10 +37,13 @@ class PostCategory extends Component {
    }
 }
 
-const mapStateToProps = ({ posts, comments }) => (
+const mapStateToProps = ({ posts, comments, util }) => (
    {
       posts,
-      comments
+      comments,
+      sortByLabel: util.sortBy.find(sortItem =>
+         sortItem.active === true
+      )
    }
 )
 
