@@ -32,6 +32,18 @@
          font-style: italic;
          color: #7e7e7e
       }
+
+      .post-actions {
+        margin-top: 5px;
+        color: #7e7e7e;
+        a {
+          color: #7e7e7e;
+          &:hover {
+            color: #009bff;
+          }
+        }
+      }
+
    }
 
    .layout-block-2 {
